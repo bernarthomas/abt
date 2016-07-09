@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+{% block title %}Accueil{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('bundles/app/css/vendor/fontawesome/font-awesome.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('bundles/app/css/home.css') }}" rel="stylesheet" />
+{% endblock %}
+{% block body %}
+    <section>
+        <article>
+            <h2>Documents</h2>
+            <h3><a href="{{ url('app_documents_index') }}">Les documents d'Annie et de Bernard</a></h3>
+        </article>
+        <article>
+            <h2>Films</h2>
+            <h3><a href="{{ url('app_films_index') }}">L'accès direct et sans pub aux films du site k-streaming</a></h3>
+        </article>
+        <article>
+            <h2>Listes</h2>
+            <h3><a href="{{ url('app_listes_index') }}">Les listes d'Annie et de Bernard</a></h3>
+        </article>
+        <article>
+            <h2>Notes</h2>
+            <h3><a href="{{ url('app_notes_index') }}">Les notes d'Annie et de Bernard</a></h3>
+        </article>
+    </section>
+{% endblock %}

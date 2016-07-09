@@ -1,0 +1,9 @@
+section{display: flex; height: 100%; overflow: auto;}
+article{padding: 1rem;}
+article h2{background-color: #000080; color: #C0C0C0; margin-bottom: 0;}
+article h3{border: solid 1px #000080; margin: 0; padding: 1rem;}
+article h3 a{color: #101010; text-decoration: none;}
+
+@media screen and (max-width: 768px) {
+    section{flex-direction: column;}
+}

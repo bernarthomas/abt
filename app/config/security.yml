@@ -1,0 +1,48 @@
+security:
+    providers:
+#        in_memory:
+#            memory:
+#                users:
+#                    anniebourdin@free.fr:
+#                        password: $2y$12$DponxAUK6tdgXkpRF0EbMedtK2cIjY0fsHPEUNh.6Y8zLkHgnsFjS
+#                       aniber
+#                        roles: 'ROLE_USER'
+#                    bernarthomas@free.fr:
+#                        password: $2y$12$A6Xy057UbCCFmSDbtQtTHe9YW8gkIqpXz9EU9DfGMS6agx753htym
+#                        complice
+#                        roles: 'ROLE_USER'
+#                    admin@abt.net:
+#                        password: $2y$12$i3DwBrqWzyI5cmlWrzMjdOC3iYHTNxkcDKHGZ1/I0mBzhWRW4q1J6
+#                        Complice 31
+#                        roles: 'ROLE_ADMIN'
+        db_provider:
+            entity:
+                class: AppBundle:Utilisateur
+                property: username
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: ~
+#            http_basic: ~
+            pattern:    ^/
+            http_basic: ~
+            provider: db_provider
+            form_login:
+                login_path: login
+                check_path: login
+                csrf_token_generator: security.csrf.token_manager
+            logout:
+                path:   /logout
+                target: /login
+    access_control:
+        - { path: ^/utilisateur/creer, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+
+    encoders:
+        AppBundle\Entity\Utilisateur: bcrypt
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER

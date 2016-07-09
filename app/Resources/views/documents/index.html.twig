@@ -1,0 +1,34 @@
+{% extends "::base.html.twig" %}
+{% form_theme doc_form _self %}
+{% block title %}Les documents d'Annie et Bernard{% endblock %}
+{% block form_widget_simple %}
+    {% set type = type|default('text') %}
+    @@@@@@<input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+{% endblock form_widget_simple %}
+{% block body %}
+<h2>Welcome to the Documents:index page</h2>
+    {{  form(doc_form) }}
+    {% if documents | length == 0 %}
+    <p>Aucun document</p>
+    {% else %}
+        {{ form_errors(docs_form.documents) }}
+        <table>
+            <tr></th><th>Document</th><th>Fichier</th><th>Description</th></tr>
+        {% for docField in docs_form.documents %}
+            <tr><td>{{ form_label(docField) }} - {{ form_widget(docField) }}</td></tr>
+        {% endfor %}
+        </table>
+        {#{{  form_row(docs_form.documents) }}#}
+        {{ form_label(docs_form.documents) }}
+        {{ form_errors(docs_form.documents) }}
+
+        <ul>
+            {% for docField in docs_form.documents %}
+                <li>
+                    {{ form_errors(docField) }}
+                    {{ form_widget(docField) }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

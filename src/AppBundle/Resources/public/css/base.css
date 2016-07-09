@@ -1,0 +1,19 @@
+html{height: 100%;}
+body{height: 100%; font-family: sans-serif; overflow: hidden;}
+#base_header{display: flex;}
+#base_header h1{padding-left: 2rem;}
+.info {
+    border: 1px solid;
+    margin: 1rem 0;
+    padding:1.5rem 1rem 1.5rem 1rem;
+    background-repeat: no-repeat;
+    background-position: 1rem center;
+}
+.info {
+    color: #00529B;
+    background-color: #BDE5F8;
+}
+
+@media screen and (max-width: 768px) {
+    #base_nav{display: none;}
+}

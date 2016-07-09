@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}ABT{% endblock %}</title>
+        {% block stylesheets %}
+            <link href="{{ asset('bundles/app/css/base.css') }}" rel="stylesheet" />
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        {% block header %}
+        <header id="base_header">
+            <a href="{{ url('homepage') }}"><img src="/apple-touch-icon.png" alt="accueil"></a>
+            <h1>{{ block('title') }}</h1>
+        </header>
+        <nav id="base_nav">
+            {% if is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_ADMIN') %}
+                <a href="{{ url('utilisateur_creer') }}">enregistrer un utilisateur</a>
+            {% endif %}
+            {% if is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_USER') %}
+            <a href="{{ url('app_documents_index') }}">documents</a>
+            <a href="{{ url('app_films_index') }}">films</a>
+            <a href="{{ url('app_listes_index') }}">listes</a>
+            <a href="{{ url('app_notes_index') }}">notes</a>
+            <a href="{{ url('logout') }}">déconnexion</a>
+            {% endif %}
+        </nav>
+        {% if app.session.flashbag.has('info') %}
+        <div class="info">
+            <i class="fa fa-info-circle"></i>
+            {% for flashMessage in app.session.flashbag.get('info') %}
+            {{ flashMessage }}
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endblock %}
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
